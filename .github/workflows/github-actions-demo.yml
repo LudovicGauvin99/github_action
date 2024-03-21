@@ -1,3 +1,6 @@
+env:
+  image_name: "lg/flask-hello-world:latest"
+
 name: GitHub Actions Demo
 on: [push]
 jobs:
@@ -7,8 +10,21 @@ jobs:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      
       - name: Check out repository code
         uses: actions/checkout@v4
       - run: python3 job.py
       - run: python3 -m pip install pytest 
       - run: pytest test_job.py
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build Image and Push
+        run: |
+          docker build -t $image_name .
+          docker tag $image_name $image_name
+          docker push $image_name
