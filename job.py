@@ -1,6 +1,6 @@
 values = (5, 6, 8, 1, 50, 32, 42, 51, 6, 8)
 
-def mean(table):
+def job(table):
     if  (len(table) == 0):
         return 0
 
