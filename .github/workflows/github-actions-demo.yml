@@ -18,7 +18,7 @@ jobs:
       - run: pytest test_job.py
 
       - name: Log in to the Container registry
-      - run: docker login -u ${{ vars.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
+        run: docker login -u ${{ vars.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
 
       - name: Build Image and Push
         run: |
