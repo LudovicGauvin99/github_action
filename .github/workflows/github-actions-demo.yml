@@ -1,5 +1,5 @@
 env:
-  image_name: "lg/flask-hello_world:latest"
+  image_name: "ludovicg/flask-hello_world:latest"
 
 name: GitHub Actions Demo
 on: [push]
